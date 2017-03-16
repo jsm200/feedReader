@@ -47,7 +47,7 @@ $(function() {
          * hidden by default.
          */
         it('ensures the menu element is hidden by default', function() {
-            expect(document.body.className).toBe('menu-hidden');
+            expect(document.body.className).toContain('menu-hidden');
         });
          /* test that ensures the menu changes
           * visibility when the menu icon is clicked. This test

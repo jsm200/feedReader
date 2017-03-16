@@ -35,7 +35,7 @@ $(function() {
             for (var i = 0, len = allFeeds.length; i < len; i++) {
                 expect(allFeeds[i].url).toMatch('http');
                 expect(allFeeds[i].name.length).not.toEqual(0);
-            };
+            }
         });   
     });
 
@@ -58,29 +58,24 @@ $(function() {
             expect(document.body.className).toContain('menu-hidden');
         });
     });
-
+    
+    describe('Initial Entries', function() {
+        beforeEach(function(done) {
+            loadFeed(0,done);
+        });        
         /* test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-    describe('Initial Entries', function() {
-        beforeEach(function(done) {
-            loadFeed(0,done);
-        });        
-
-        it('there is at least a single .entry element within the .feed container', function(done) {
+        it('there is at least a single .entry element within the .feed container', function() { //removed done from function() per code reviewer
             var lengthList = $('.feed .entry').length;
             expect(lengthList).toBeGreaterThan(0);
-            done();
+            // done();  // removed per cod reviewer
         });   
     });
 
-        /* test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
     describe('New Feed Selection', function() {
         var content1;
         var content2;
@@ -91,10 +86,13 @@ $(function() {
                 loadFeed(1, done);
             });
         });       
-            
+         /* test that ensures when a new feed is loaded
+         * by the loadFeed function that the content actually changes.
+         * Remember, loadFeed() is asynchronous.
+         */    
         it('content change with new feed', function(done) {
            content2 = $('.feed .entry').find('h2')[0].textContent;
-           expect(content1).not.toEqual(content2)
+           expect(content1).not.toEqual(content2);
            done();
         });
     });

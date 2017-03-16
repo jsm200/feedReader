@@ -26,14 +26,17 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
 
-        /* Test that all urls are defined and not empy.
-         * Test each name is defined and not empty.
-         * Added both tests to same loop.
-         */
-
-        it('ensures all URLs and Names are not empty', function() {
+        /* Test that all urls are defined and not empy.*/
+         it('ensures all URLs are definde and not empty', function() {
             for (var i = 0, len = allFeeds.length; i < len; i++) {
+                expect(allFeeds[i].url).toBeDefined();
                 expect(allFeeds[i].url).toMatch('http');
+            }
+        });   
+        /* Test each name is defined and not empty.*/
+        it('ensures all Names are definde and not empty', function() {
+            for (var i = 0, len = allFeeds.length; i < len; i++) {
+                expect(allFeeds[i].name).toBeDefined();
                 expect(allFeeds[i].name.length).not.toEqual(0);
             }
         });   
